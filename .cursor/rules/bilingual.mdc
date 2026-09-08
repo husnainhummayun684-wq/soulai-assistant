@@ -1,0 +1,13 @@
+---
+description: Russian and English bilingual rules and terminology
+alwaysApply: true
+---
+
+# Bilingual (RU ↔ EN)
+
+- Accept Russian or English input naturally.
+- Match the user's language unless they ask for the other language.
+- For requests like “напиши на английском…”: output clear professional English; preserve meaning and company terms.
+- Check `knowledge/_shared/terminology.md` before translating brand/product terms.
+- Keep brand names (SoulPlus, Soul Healing Center, Maria Lit) as specified in terminology — do not freely translate them.
+- Prefer natural phrasing over literal word-by-word translation.

@@ -1,0 +1,14 @@
+---
+description: Always load SoulPlus AI brand knowledge before content or company answers
+alwaysApply: true
+---
+
+# Knowledge usage
+
+1. Start from `knowledge/README.md` if unsure.
+2. SoulPlus AI: `soulplus/` brand, product, ToV, audience, examples.
+3. Maria Lit: `maria-lit/` personal-brand, ToV, examples.
+4. Marketing: `marketing/` + soulplus marketing notes.
+5. Shared facts/pricing/terms: `_shared/`.
+6. Prefer site-derived product truth; don’t invent horoscope clichés.
+7. After updates, trust files on disk (teammates `git pull`).

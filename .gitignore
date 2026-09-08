@@ -1,0 +1,37 @@
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+secrets/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+!.vscode/extensions.json
+*.swp
+*~
+
+# Cursor local (keep shared project rules/skills)
+.cursor/mcp.json
+!.cursor/rules/
+!.cursor/skills/
+
+# Node / Python (future tooling)
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs / temp
+*.log
+tmp/
+temp/
+.cache/
