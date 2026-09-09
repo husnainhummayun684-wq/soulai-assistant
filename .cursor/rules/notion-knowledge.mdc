@@ -1,0 +1,13 @@
+---
+description: Retrieve product documentation from Notion when needed
+alwaysApply: true
+---
+
+# Notion knowledge
+
+- Product documentation now lives in Notion, not only in knowledge/.
+- When the user asks anything about the product, features, plans, or "what does the doc say about X", use the Notion MCP tools to search Notion and retrieve the relevant page(s) before answering.
+- Prefer Notion content over assumptions or stale markdown when they conflict; note the conflict if found.
+- Cite which Notion page the answer came from (title, and link if available).
+- If nothing relevant is found in Notion, fall back to knowledge/ files, and say so.
+- Can write/edit/delete Notion pages when explicitly asked — see `notion-integration.mdc` for confirmation rules and permission handling.

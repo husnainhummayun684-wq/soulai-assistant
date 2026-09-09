@@ -1,32 +1,37 @@
 # Knowledge Index
 
-All brand and company context lives here. **Edit these files to update what the AI knows.** No rebuild — `git pull` and start a new chat (or `@` the file).
+**Notion is the primary source** for product documentation (features, plans, pricing). Use Notion MCP first (rule: `notion-knowledge.mdc`). Files listed below hold **brand, tone, and marketing** material and act as a **fallback** when Notion is unavailable or a page is still unmapped.
+
+See `docs/HOW-TO-UPDATE-KNOWLEDGE.md` for how to update docs.
 
 **Primary product:** [SoulPlus AI](https://www.soulplus-ai.com/) — Destiny Matrix + AI insights.
 
 ## How to use (humans)
 
-1. Find the brand/topic folder.  
-2. Edit or add a `.md` file.  
-3. Commit/push to the company repo.  
-4. Teammates `git pull`.
+1. Update **product** docs in Notion; share pages with the company internal integration.
+2. Update **brand / ToV / marketing** examples in the local `.md` files below; commit/push.
+3. Optionally fill Notion URLs in `notion-map.md`.
 
 ## How to use (AI)
 
-Before writing brand content, read the relevant paths. Prefer specific brand files over assumptions.
+1. Follow `.cursor/rules/notion-knowledge.mdc` for product questions (and writes when explicitly asked).  
+2. Fall back to paths below if Notion MCP is down or nothing relevant is found.  
+3. Prefer specific brand files over assumptions. Do not invent facts.
+
 
 ---
 
-## Shared (`_shared/`)
+## Shared (`_shared/`) — fallback
 
 | File | Purpose |
 |------|---------|
+| [notion-map.md](_shared/notion-map.md) | Category → Notion page URLs |
 | [company-overview.md](_shared/company-overview.md) | Who we are, philosophy, links |
 | [products.md](_shared/products.md) | Product + public plan |
 | [team.md](_shared/team.md) | Roles |
 | [terminology.md](_shared/terminology.md) | RU/EN terms |
 
-## SoulPlus AI (`soulplus/`)
+## SoulPlus AI (`soulplus/`) — fallback
 
 | File | Purpose |
 |------|---------|
@@ -38,15 +43,15 @@ Before writing brand content, read the relevant paths. Prefer specific brand fil
 | [content-examples-approved.md](soulplus/content-examples-approved.md) | Like |
 | [content-examples-avoid.md](soulplus/content-examples-avoid.md) | Avoid |
 
-## Soul Healing Center (`soul-healing-center/`)
+## Soul Healing Center (`soul-healing-center/`) — fallback
 
 Center/ecosystem context (product details live under SoulPlus).
 
-## Maria Lit (`maria-lit/`)
+## Maria Lit (`maria-lit/`) — fallback
 
 Founder brand, ToV, examples.
 
-## Marketing (`marketing/`)
+## Marketing (`marketing/`) — fallback
 
 Strategy, funnels, audiences, campaigns.
 
@@ -56,6 +61,7 @@ Blueprint, Design, Development, Human Architecture, decisions — expand later t
 
 ## Adding a new section
 
-1. Create `knowledge/<topic>/`  
-2. Index it here  
-3. Optional: new Cursor rule/skill if behavior must change  
+1. Create Notion page + add row to `notion-map.md`  
+2. Optionally mirror under `knowledge/<topic>/` as fallback  
+3. Index it here  
+4. Optional: new Cursor rule/skill if behavior must change  

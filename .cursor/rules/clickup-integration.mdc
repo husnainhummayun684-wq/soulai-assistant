@@ -1,0 +1,17 @@
+---
+description: Route task management through ClickUp via MCP
+alwaysApply: true
+---
+
+# ClickUp integration
+
+ClickUp is the company's project management tool. Use skill `clickup-tasks` for
+any task create/assign/prioritize/status-change request.
+
+## Scope
+- Act only on explicit requests ("create a task for...", "assign X to...",
+  "mark this as Done") — never create or modify tasks as a side effect of
+  an unrelated conversation.
+- Always confirm back what was created/changed.
+- No autonomous task creation, no auto-status-changes, no ClickUp automations/webhooks.
+- Never commit secrets (`CLICKUP_API_KEY` stays in local `.env` only).

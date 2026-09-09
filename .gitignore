@@ -16,8 +16,8 @@ Desktop.ini
 *.swp
 *~
 
-# Cursor local (keep shared project rules/skills)
-.cursor/mcp.json
+# Cursor — keep shared project MCP/rules/skills in git (Notion token stays in local `.env` only)
+!.cursor/mcp.json
 !.cursor/rules/
 !.cursor/skills/
 

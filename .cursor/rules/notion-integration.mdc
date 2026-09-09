@@ -1,0 +1,49 @@
+---
+description: Route product doc retrieval and writes through Notion via MCP
+alwaysApply: true
+---
+
+# Notion integration
+
+Notion holds product documentation. Follow `.cursor/rules/notion-knowledge.mdc`
+for retrieval and write requests. Local `knowledge/*.md` is fallback for
+brand/tone/marketing and when MCP is down or a page is unmapped in `notion-map.md`.
+
+## Retrieval flow
+
+When a question needs product facts:
+
+1. Use Notion MCP tools to search and retrieve relevant page(s).
+2. Optionally consult `knowledge/_shared/notion-map.md` for known page URLs.
+3. Answer from Notion. Cite page title (and link if available).
+4. If nothing matches or MCP is down, fall back to local `knowledge/`, and say so.
+5. If neither has it — say it is not documented yet. Do not invent facts.
+
+## Write flow
+
+Only create, update, append, or delete/archive Notion pages/blocks when the user
+*explicitly* asks in that message. Never as a side effect of an unrelated request.
+
+1. Identify the target page (from the ask and/or `notion-map.md`).
+2. For create/update/append: show the exact text/change and get a clear go-ahead
+   when the change is non-trivial; then call the MCP tool.
+3. For delete/archive: restate exactly what will be removed and get **explicit
+   confirmation** before doing it.
+4. After any write, confirm back exactly what was created/changed/deleted
+   (page title, and link if available).
+
+Never wipe unrelated content — edit only the specific block/section relevant to
+the request.
+
+## Scope (Phase 2)
+
+Phase 2: the assistant may search, retrieve, create, update, append to, and
+delete/archive Notion pages/blocks when explicitly asked. No Instagram, email,
+or Company Brain automation. Never commit secrets (`NOTION_API_KEY` stays in
+local `.env` only).
+
+Actual permissions are enforced by Notion via this workspace's integration token
+capabilities (Settings > Connections > [integration] > Capabilities). If an
+action is rejected by the Notion API for lacking permission, tell the user which
+capability is missing and that it needs to be enabled on the integration in
+Notion, rather than retrying or working around it.

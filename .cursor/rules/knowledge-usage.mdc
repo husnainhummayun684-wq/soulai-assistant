@@ -5,10 +5,11 @@ alwaysApply: true
 
 # Knowledge usage
 
-1. Start from `knowledge/README.md` if unsure.
+0. Notion first for product docs — follow `.cursor/rules/notion-knowledge.mdc` (and `notion-integration.mdc` / `notion-map.md`). Local files below are brand/tone/marketing material and fallback/cache.
+1. Start from `knowledge/README.md` if unsure / Notion unavailable.
 2. SoulPlus AI: `soulplus/` brand, product, ToV, audience, examples.
 3. Maria Lit: `maria-lit/` personal-brand, ToV, examples.
 4. Marketing: `marketing/` + soulplus marketing notes.
 5. Shared facts/pricing/terms: `_shared/`.
 6. Prefer site-derived product truth; don’t invent horoscope clichés.
-7. After updates, trust files on disk (teammates `git pull`).
+7. After local-only updates, trust files on disk (teammates `git pull`). Prefer confirming Notion for product facts when MCP is available.

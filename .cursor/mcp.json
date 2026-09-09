@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "notion": {
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/.cursor/run-mcp.mjs",
+        "@notionhq/notion-mcp-server@latest"
+      ]
+    },
+    "clickup": {
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/.cursor/run-mcp.mjs",
+        "@misddev/clickup-mcp-server"
+      ]
+    }
+  }
+}

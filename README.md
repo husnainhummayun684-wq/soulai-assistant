@@ -11,14 +11,20 @@ SoulPlus AI unlocks your soul’s matrix: a personalized energy map from ancient
 ## What Phase 1 includes
 
 - Structured knowledge from the live product/brand (SoulPlus AI, Maria Lit, marketing, shared)
-- Modes: Content/SMM, Marketing, Founder/Communication, General Company
+- Notion-based product doc retrieval via MCP (alongside local `knowledge/` files) — extended by Phase 2 read/write
+- ClickUp task management via MCP (create/assign/prioritize/status) on explicit request
+- Modes: Content/SMM, Marketing, Founder/Communication, General Company, Task Management
 - Russian ↔ English with brand terminology
 - Team onboarding + simple knowledge updates
 - Room to grow toward email tooling, Company Brain, etc. **later**
 
+## Phase 2
+
+- Full Notion read/write (create, update, append, delete pages/blocks) via MCP, on explicit request, permission-bounded by the integration token’s capabilities configured in Notion
+
 ## What Phase 1 does **not** include
 
-Automatic posting, sending email campaigns, ClickUp bots, Supabase RAG, autonomous agents, Stripe admin, website deploy.
+Automatic posting, sending email campaigns, autonomous/scheduled ClickUp automation (webhooks, triggers), Supabase RAG, autonomous agents, Stripe admin, website deploy.
 
 Marketing mode **writes** campaign/email drafts; humans send them.
 
@@ -47,7 +53,7 @@ Paste winning captions into `knowledge/soulplus/content-examples-approved.md`, l
 
 ## Security
 
-Company-owned GitHub; each person uses their own Cursor login; secrets only in local `.env` (see `.env.example`).
+Company-owned GitHub; each person uses their own Cursor login; secrets only in local `.env` (see `.env.example`). Notion access uses a company-owned **internal integration** token stored in each user’s local `.env` as `NOTION_API_KEY` — never commit `.env`.
 
 ## Future
 
