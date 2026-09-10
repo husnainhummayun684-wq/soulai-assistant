@@ -1,5 +1,6 @@
 ---
 name: clickup-tasks
+
 description: >-
   Creates, assigns, prioritizes, and updates the status of ClickUp tasks via
   MCP. Use when the user explicitly asks to create a task, assign someone,

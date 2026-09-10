@@ -9,7 +9,7 @@
  * Usage: node .cursor/run-mcp.mjs <npm-package> [...package-args]
  */
 import { spawn } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs" ;
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
