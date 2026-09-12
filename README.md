@@ -20,13 +20,14 @@ SoulPlus AI unlocks your soul’s matrix: a personalized energy map from ancient
 
 ## Phase 2
 
-- Full Notion read/write (create, update, append, delete pages/blocks) via MCP, on explicit request, permission-bounded by the integration token’s capabilities configured in Notion
+- Full Notion read/write (create, update, append, delete pages/blocks) via official remote Notion MCP (OAuth), on explicit request, permission-bounded by the connected user’s Notion access
+- Meta/Instagram + Facebook via local MCP (server id `meta`): preview/publish, insights, comments, DMs — **explicit trigger**; single-account by default (`account_id` optional); audit under `logs/meta-audit.jsonl`
 
 ## What Phase 1 does **not** include
 
-Automatic posting, sending email campaigns, autonomous/scheduled ClickUp automation (webhooks, triggers), Supabase RAG, autonomous agents, Stripe admin, website deploy.
+Autonomous posting, sending email campaigns, autonomous/scheduled ClickUp automation (webhooks, triggers), Supabase RAG, autonomous agents, Stripe admin, website deploy.
 
-Marketing mode **writes** campaign/email drafts; humans send them.
+Marketing mode **writes** campaign/email drafts; humans send them. Meta (IG/FB) actions run only when someone explicitly asks **and** names the account (slash commands under `.cursor/commands/Meta/` or a clear publish/reply request).
 
 ## Quick start
 
@@ -43,6 +44,8 @@ Full guide: [docs/ONBOARDING.md](docs/ONBOARDING.md)
 knowledge/          Brand & product truth (edit to teach the AI)
 .cursor/rules/      Shared behavior
 .cursor/skills/     Mode playbooks
+.cursor/commands/   Slash commands (incl. Meta/)
+.cursor/mcp-servers/ Local MCP servers (Meta IG+FB multi-account)
 docs/               Onboarding, updates, handover, architecture
 AGENTS.md           Root AI instructions
 ```
@@ -53,7 +56,16 @@ Paste winning captions into `knowledge/soulplus/content-examples-approved.md`, l
 
 ## Security
 
-Company-owned GitHub; each person uses their own Cursor login; secrets only in local `.env` (see `.env.example`). Notion access uses a company-owned **internal integration** token stored in each user’s local `.env` as `NOTION_API_KEY` — never commit `.env`.
+Company-owned GitHub; each person uses their own Cursor login; secrets only in local `.env` (see `.env.example`). Notion access uses the **official remote Notion MCP** with per-user **OAuth** in Cursor (no API key in `.env`). Meta credentials (`META_APP_SECRET`, `META_PAGE_ACCESS_TOKEN`, etc.) stay local only.
+
+## Meta / Instagram + Facebook setup (short)
+
+1. Facebook **Page** (+ optional linked IG Business/Creator).
+2. Meta app with IG + Page permissions (see onboarding).
+3. Graph API Explorer → long-lived Page token + Page ID + IG business account ID.
+4. In `.env`: `META_APP_ID`, `META_APP_SECRET`, `META_PAGE_ACCESS_TOKEN`, `META_PAGE_ID`, `META_IG_BUSINESS_ACCOUNT_ID`.
+5. Enable the **meta** MCP in Cursor (no npm install — plain Node.js). Restart after editing `.env`.
+6. Single account: you can omit `account_id`. Multi-account: set `META_ACCOUNTS` (optional). Details: [docs/ONBOARDING.md](docs/ONBOARDING.md) and `.cursor/rules/meta-instagram-facebook.mdc`.
 
 ## Future
 

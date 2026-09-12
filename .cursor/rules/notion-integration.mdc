@@ -9,11 +9,21 @@ Notion holds product documentation. Follow `.cursor/rules/notion-knowledge.mdc`
 for retrieval and write requests. Local `knowledge/*.md` is fallback for
 brand/tone/marketing and when MCP is down or a page is unmapped in `notion-map.md`.
 
+## MCP access
+
+Project Notion uses Notion’s **hosted remote MCP** (`url: https://mcp.notion.com/mcp`
+in `.cursor/mcp.json`) — the same stack as Cursor’s built-in Notion connection.
+Teammates authenticate with **OAuth** in Cursor (Settings → MCP → notion → connect).
+No `NOTION_API_KEY` is required for this path.
+
+Use agent-oriented tools (`notion-search` / `notion-ai-search`, `notion-fetch`,
+`notion-create-pages`, `notion-update-page`, …). See skill `notion-knowledge`.
+
 ## Retrieval flow
 
 When a question needs product facts:
 
-1. Use Notion MCP tools to search and retrieve relevant page(s).
+1. Use Notion MCP search / fetch tools for the relevant page(s).
 2. Optionally consult `knowledge/_shared/notion-map.md` for known page URLs.
 3. Answer from Notion. Cite page title (and link if available).
 4. If nothing matches or MCP is down, fall back to local `knowledge/`, and say so.
@@ -39,11 +49,9 @@ the request.
 
 Phase 2: the assistant may search, retrieve, create, update, append to, and
 delete/archive Notion pages/blocks when explicitly asked. No Instagram, email,
-or Company Brain automation. Never commit secrets (`NOTION_API_KEY` stays in
-local `.env` only).
+or Company Brain automation.
 
-Actual permissions are enforced by Notion via this workspace's integration token
-capabilities (Settings > Connections > [integration] > Capabilities). If an
-action is rejected by the Notion API for lacking permission, tell the user which
-capability is missing and that it needs to be enabled on the integration in
-Notion, rather than retrying or working around it.
+Actual permissions are what the **OAuth-connected Notion user** can access in the
+workspace. If an action is rejected for lacking permission, tell the user clearly
+and do not retry or work around it. Ensure product doc roots are shared with each
+teammate who needs them (see `notion-map.md`).

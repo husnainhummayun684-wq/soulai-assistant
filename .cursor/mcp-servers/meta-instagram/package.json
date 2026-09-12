@@ -1,0 +1,13 @@
+{
+  "name": "soulai-meta-mcp",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Zero-dependency Meta Graph API MCP (Instagram + Facebook) for SoulPlus AI",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/index.mjs"
+  }
+}

@@ -2,6 +2,7 @@
 .env
 .env.local
 .env.*.local
+.meta-accounts.local.json
 *.pem
 *.key
 credentials.json
@@ -20,6 +21,9 @@ Desktop.ini
 !.cursor/mcp.json
 !.cursor/rules/
 !.cursor/skills/
+!.cursor/commands/
+!.cursor/mcp-servers/
+!.cursor/run-mcp.mjs
 
 # Node / Python (future tooling)
 node_modules/
@@ -32,6 +36,7 @@ venv/
 
 # Logs / temp
 *.log
+logs/*.jsonl
 tmp/
 temp/
 .cache/

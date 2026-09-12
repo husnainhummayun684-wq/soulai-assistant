@@ -8,7 +8,7 @@ See `docs/HOW-TO-UPDATE-KNOWLEDGE.md` for how to update docs.
 
 ## How to use (humans)
 
-1. Update **product** docs in Notion; share pages with the company internal integration.
+1. Update **product** docs in Notion; ensure teammates have workspace access to those pages.
 2. Update **brand / ToV / marketing** examples in the local `.md` files below; commit/push.
 3. Optionally fill Notion URLs in `notion-map.md`.
 
@@ -26,6 +26,8 @@ See `docs/HOW-TO-UPDATE-KNOWLEDGE.md` for how to update docs.
 | File | Purpose |
 |------|---------|
 | [notion-map.md](_shared/notion-map.md) | Category → Notion page URLs |
+| [clickup-map.md](_shared/clickup-map.md) | ClickUp list / space IDs |
+| [meta-accounts-map.md](_shared/meta-accounts-map.md) | Brand → Meta account_id notes |
 | [company-overview.md](_shared/company-overview.md) | Who we are, philosophy, links |
 | [products.md](_shared/products.md) | Product + public plan |
 | [team.md](_shared/team.md) | Roles |

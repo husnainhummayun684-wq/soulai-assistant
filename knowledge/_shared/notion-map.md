@@ -1,6 +1,6 @@
 # Notion page map
 
-Maps knowledge categories to Notion pages. **Fill in the Notion page URLs/IDs** after pages exist and are shared with the company internal integration (`NOTION_API_KEY`).
+Maps knowledge categories to Notion pages. **Fill in the Notion page URLs/IDs** after pages exist and each teammate can open them with their OAuth-connected Notion account (project MCP: `https://mcp.notion.com/mcp`).
 
 Until a cell is filled, the assistant searches Notion by topic and/or uses the local fallback file.
 
@@ -21,9 +21,9 @@ Until a cell is filled, the assistant searches Notion by topic and/or uses the l
 | Maria Lit | `maria-lit/*.md` | `<!-- TODO: paste Notion URL -->` |
 | Soul Healing Center | `soul-healing-center/*.md` | `<!-- TODO: paste Notion URL -->` |
 
-## Top-level workspaces to share with the internal integration
+## Top-level workspaces to share with teammates
 
-Share these roots (or their parent) so search/read can reach children:
+Ensure each person who enables Notion MCP can open these roots (or their parent):
 
 1. SoulPlus AI  
 2. Maria Lit  

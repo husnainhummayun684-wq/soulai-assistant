@@ -55,32 +55,46 @@ function resolveNpxCli() {
 
 loadEnvFile(envPath);
 
-// Official Notion MCP expects NOTION_TOKEN; team .env documents NOTION_API_KEY.
-if (process.env.NOTION_API_KEY && !process.env.NOTION_TOKEN) {
-  process.env.NOTION_TOKEN = process.env.NOTION_API_KEY;
-}
+// Notion uses the remote hosted MCP (OAuth) via mcp.json — not this launcher.
+// ClickUp + Meta still spawn through this script.
 
 const [pkg, ...pkgArgs] = process.argv.slice(2);
 if (!pkg) {
-  console.error("Usage: node .cursor/run-mcp.mjs <npm-package> [...args]");
+  console.error(
+    "Usage: node .cursor/run-mcp.mjs <npm-package|local-.mjs-path> [...args]",
+  );
   process.exit(1);
 }
 
+const isLocalScript =
+  pkg.endsWith(".mjs") ||
+  pkg.endsWith(".js") ||
+  pkg.startsWith(".") ||
+  pkg.startsWith("/") ||
+  /^[A-Za-z]:[\\/]/.test(pkg);
+
 const npxCli = resolveNpxCli();
-const child = npxCli
-  ? spawn(process.execPath, [npxCli, "-y", pkg, ...pkgArgs], {
+const child = isLocalScript
+  ? spawn(process.execPath, [resolve(root, pkg), ...pkgArgs], {
       stdio: "inherit",
       env: process.env,
       cwd: root,
       windowsHide: true,
     })
-  : spawn(process.platform === "win32" ? "npx.cmd" : "npx", ["-y", pkg, ...pkgArgs], {
-      stdio: "inherit",
-      env: process.env,
-      cwd: root,
-      shell: true,
-      windowsHide: true,
-    });
+  : npxCli
+    ? spawn(process.execPath, [npxCli, "-y", pkg, ...pkgArgs], {
+        stdio: "inherit",
+        env: process.env,
+        cwd: root,
+        windowsHide: true,
+      })
+    : spawn(process.platform === "win32" ? "npx.cmd" : "npx", ["-y", pkg, ...pkgArgs], {
+        stdio: "inherit",
+        env: process.env,
+        cwd: root,
+        shell: true,
+        windowsHide: true,
+      });
 
 child.on("exit", (code, signal) => {
   if (signal) {

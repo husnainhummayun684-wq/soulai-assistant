@@ -1,0 +1,70 @@
+---
+description: Meta Instagram + Facebook Graph API (single-account default, multi optional)
+alwaysApply: true
+---
+
+# Meta / Instagram + Facebook integration
+
+Manage brand Pages/IG via the `meta` MCP server. Use skill `meta-instagram` and
+`.cursor/commands/Meta/`.
+
+## What it can do
+
+Gated by the connected Page token’s permissions (not hardcoded). Typical scopes:
+`instagram_basic`, `instagram_content_publish`, `instagram_manage_comments`,
+`instagram_manage_messages`, `instagram_manage_insights`, `pages_show_list`,
+`pages_read_engagement`, `pages_manage_posts`, `pages_manage_engagement`,
+`pages_messaging`, `pages_read_user_content`, `business_management`.
+
+IG: image/carousel/Reels/Stories. FB: feed/photo/video (+ optional schedule).
+Also: insights, comments, DMs, token refresh, preview.
+
+## Config (local `.env` only — never commit)
+
+### Single account (default)
+
+| Variable | Purpose |
+|----------|---------|
+| `META_APP_ID` / `META_APP_SECRET` | Token exchange / debug |
+| `META_PAGE_ACCESS_TOKEN` | Long-lived Page token (~60 days) |
+| `META_PAGE_ID` | Facebook Page ID (FB posts + DMs) |
+| `META_IG_BUSINESS_ACCOUNT_ID` | Instagram Business/Creator ID |
+| `META_ACCOUNT_ID` | Optional slug (default `default`) |
+
+With only one account configured, **`account_id` is optional** on tools — the server
+uses that account automatically.
+
+### Multi-account (optional)
+
+Set `META_ACCOUNTS` (JSON array) or `META_ACCOUNTS_FILE`. That **overrides** the
+single-account vars. Then every action needs an explicit `account_id` (never guess).
+
+See `.env.example`, `knowledge/_shared/meta-accounts-map.md`, `docs/ONBOARDING.md`.
+
+## Account targeting
+
+- **One account:** omit `account_id` or pass the configured id — either is fine.
+- **Several accounts:** call `meta_list_accounts` if unclear; pass `account_id`; do not guess.
+
+## Posting flows
+
+**Instagram:** create container → publish with `confirm=true`. Quota **25 / 24h**.
+No native organic schedule.
+
+**Facebook:** `fb_publish_*` with `confirm=true`; optional `scheduled_publish_time`.
+
+## Safety
+
+- Never publish/reply/DM from ambient context — explicit user request only.
+- Mutating tools require `confirm=true`.
+- Audit: `logs/meta-audit.jsonl`.
+
+## Brand voice
+
+Load matching `knowledge/` ToV (SoulPlus / Maria Lit / Soul Healing Center). Prefer
+content-smm for draft captions.
+
+## Token refresh (~60 days)
+
+`meta_debug_account_token` → `meta_refresh_account_token` (`confirm=true`) → update
+`META_PAGE_ACCESS_TOKEN` (or the entry in `META_ACCOUNTS`) → restart MCP.

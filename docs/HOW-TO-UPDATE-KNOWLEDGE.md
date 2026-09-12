@@ -8,10 +8,10 @@ Local markdown under `knowledge/` is reserved for **brand, tone of voice, and ma
 
 ### Connect Notion MCP (once per person)
 
-1. Create a Notion **internal integration** (Settings & members → Connections → Develop or manage integrations) and copy the token.
-2. Share the relevant product doc pages with that integration in Notion.
-3. Copy `.env.example` to `.env` and set `NOTION_API_KEY` (never commit `.env`).
-4. Ensure `.cursor/mcp.json` is present (Notion + ClickUp via `.cursor/run-mcp.mjs`, which loads `.env`) and enable the **notion** / **clickup** MCP servers in Cursor.
+1. Confirm access to the company Notion workspace and product doc pages.
+2. In Cursor: Settings → MCP → enable **notion** (remote `https://mcp.notion.com/mcp` from `.cursor/mcp.json`) → complete OAuth.
+3. Copy `.env.example` to `.env` for ClickUp/Meta if needed (Notion uses OAuth, not `NOTION_API_KEY`). Never commit `.env`.
+4. Enable **clickup** (and Meta if used); ClickUp/Meta load secrets via `.cursor/run-mcp.mjs`.
 
 Optional mapping of categories → Notion pages: `knowledge/_shared/notion-map.md` (fill in URLs once pages exist).
 
